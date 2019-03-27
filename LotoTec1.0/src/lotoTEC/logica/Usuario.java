@@ -12,9 +12,9 @@ import lotoTEC.estructuras.DoubleLinkedList;
  * @author Mata
  */
 public class Usuario {
-  String nombre, fechaNac, direccion, correo;
-  int cedula, telefono;
-  GestionSorteo gestionSorteo;
+  private String nombre, fechaNac, direccion, correo;
+  private int cedula, telefono;
+  private GestionSorteo gestionSorteo;
   private DoubleLinkedList<Tiquete> tiquetesComprados = new DoubleLinkedList<Tiquete>();
 
     public Usuario(String nombre, String fechaNac, String direccion, String correo, int cedula, int telefono) {

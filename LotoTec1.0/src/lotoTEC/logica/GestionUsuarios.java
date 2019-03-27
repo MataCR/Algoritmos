@@ -6,6 +6,7 @@
 package lotoTEC.logica;
 
 import lotoTEC.estructuras.DoubleLinkedList;
+import lotoTEC.estructuras.DoubleLinkedNode;
 
 /**
  *
@@ -25,5 +26,7 @@ public class GestionUsuarios {
         this.tiquetesComprados = tiquetesComprados;
     }
     
-    
+    public void hacerPedido(Usuario usuario, int codigoSorteo){
+        
+    }
 }

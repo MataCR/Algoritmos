@@ -11,9 +11,9 @@ package lotoTEC.logica;
  * : el nombre del emisor, el nombre del cliente, el tipo de sorteo, el número o combinación elegida y el precio
  */
 public class Tiquete {
-    String emisor, tipoSorteo;
-    int precio, numero;
-    Usuario usuario;
+    private String emisor, tipoSorteo;
+    private int precio, numero;
+   private Usuario usuario;
 
     public Tiquete(String emisor, String tipoSorteo, int precio, int numero, Usuario usuario) {
         this.emisor = emisor;
@@ -22,6 +22,14 @@ public class Tiquete {
         this.numero = numero;
         this.usuario = usuario;
     }
+
+    public Tiquete(String emisor, String tipoSorteo, int precio, int numero) {
+        this.emisor = emisor;
+        this.tipoSorteo = tipoSorteo;
+        this.precio = precio;
+        this.numero = numero;
+    }
+    
 
     public String getEmisor() {
         return emisor;

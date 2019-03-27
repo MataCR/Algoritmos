@@ -10,25 +10,38 @@ package lotoTEC.logica;
  * @author Mata
  */
 public class Sorteo {
-    String nombreSorteo;
-    int codigo;
-    String tipo;
-    int emisiones;
-    GestionTiquete gestorTiquetes;
+    private String nombreSorteo;
+    private int codigo;
+    private TipoSorteo tipo;
+    private int emisiones;
+    private GestionTiquete gestorTiquetes;
+    private String fecha;
+    
 
-    public Sorteo(String nombreSorteo, int codigo, String tipo, int emisiones) {
+    public Sorteo(String nombreSorteo, int codigo, TipoSorteo tipo, int emisiones, String fecha) {
         this.nombreSorteo = nombreSorteo;
         this.codigo = codigo;
         this.tipo = tipo;
         this.emisiones = emisiones;
+        this.fecha = fecha;
     }
 
-    public Sorteo(String nombreSorteo, int codigo, String tipo, int emisiones, GestionTiquete gestorTiquetes) {
+    public Sorteo(String nombreSorteo, int codigo, TipoSorteo tipo, int emisiones,String fecha, GestionTiquete gestorTiquetes) {
         this.nombreSorteo = nombreSorteo;
         this.codigo = codigo;
         this.tipo = tipo;
         this.emisiones = emisiones;
+        this.fecha = fecha;
         this.gestorTiquetes = gestorTiquetes;
+        
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
     
@@ -49,11 +62,11 @@ public class Sorteo {
         this.codigo = codigo;
     }
 
-    public String getTipo() {
+    public TipoSorteo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoSorteo tipo) {
         this.tipo = tipo;
     }
 

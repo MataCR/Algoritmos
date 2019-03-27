@@ -7,8 +7,8 @@ package lotoTEC.logica;
 
 
 public enum TipoSorteo {
-   LOT("Loteria"), LOTT("Lotto"), BIN("Bingo"), TIEMP("Tiempos");
-
+   LOTERIA(1,"Loteria"), LOTTO(2,"Lotto"), BINGO(3,"Bingo"), TIEMPO(4,"Tiempos");
+    private int code;
     private String tipo;
 
 
@@ -20,7 +20,17 @@ public enum TipoSorteo {
         this.tipo = tipo;
     }
 
-    TipoSorteo(String tipo) {
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+    
+
+   private TipoSorteo(int code,String tipo) {
         this.tipo = tipo;
+        this.code = code;
     }
 }
