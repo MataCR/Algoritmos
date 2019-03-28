@@ -13,9 +13,10 @@ import lotoTEC.estructuras.DoubleLinkedNode;
  * @author Mata
  */
 public class GestionSorteo {
-    private DoubleLinkedList<Sorteo> listaSorteo = new DoubleLinkedList<Sorteo>();
+    private DoubleLinkedList<Sorteo> listaSorteo;
 
     public GestionSorteo() {
+        this.listaSorteo=new DoubleLinkedList<Sorteo>();
     }
 
     public DoubleLinkedList<Sorteo> getListaSorteo() {
@@ -32,20 +33,19 @@ public class GestionSorteo {
     public void eliminarSorteo(Sorteo sorteo){
         this.listaSorteo.delete(sorteo);
     }
-    public Sorteo consultarPorNombre(String nombre){
+    public DoubleLinkedList<Sorteo> consultarPorNombre(String nombre){
+        DoubleLinkedList<Sorteo> sorteos = new DoubleLinkedList<>();
         DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
         if (this.listaSorteo.getSize() == 0) {
             System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
         }
         while (temp != null) {            
             if (temp.getElement().getNombreSorteo().equals(nombre)) {
-                break;
+                sorteos.insert(temp.getElement());
             }
             temp = temp.getNext();
-        }if (temp == null) {
-            System.out.println("No se encuentra");//CAMBIAR POR ALERT
         }
-        return temp.getElement();
+        return sorteos;
     }
     public Sorteo consultarPorCodigo(int codigo){
         DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
@@ -63,49 +63,36 @@ public class GestionSorteo {
         
         return temp.getElement();
     }
-    public Sorteo consultarTipo(TipoSorteo tipo){
+    public DoubleLinkedList<Sorteo> consultarTipo(TipoSorteo tipo){
+        DoubleLinkedList<Sorteo> sorteos = new DoubleLinkedList<>();
         DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
         if (this.listaSorteo.getSize() == 0) {
             System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
         }
         while (temp != null) {            
             if (temp.getElement().getTipo().equals(tipo)) {
-                break;
+                sorteos.insert(temp.getElement());
             }
             temp = temp.getNext();
-        }if (temp == null) {
-            System.out.println("No se encuentra");//CAMBIAR POR ALERT
-        }
-        
-        return temp.getElement();        
+        }       
+        return sorteos;       
     }
     
-    public Sorteo consultarFecha(String fecha){
+    public DoubleLinkedList<Sorteo> consultarFecha(String fecha){
+        DoubleLinkedList<Sorteo> sorteos = new DoubleLinkedList<>();
         DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
         if (this.listaSorteo.getSize() == 0) {
             System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
         }
         while (temp != null) {            
             if (temp.getElement().getFecha().equals(fecha)) {
-                break;
-            }
+                sorteos.insert(temp.getElement());
+            }         
             temp = temp.getNext();
-        }if (temp == null) {
-            System.out.println("No se encuentra");//CAMBIAR POR ALERT
         }
         
-        return temp.getElement();
+       return sorteos; 
     }
     
-//    public void consultarRangoPrecio(int Precio){
-//        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
-//        if (this.listaSorteo.getSize() == 0) {
-//            System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
-//        }
-//        while (temp != null) {                                                        RANGO ENTRE PRECIO DE TIQUETES
-//            if (temp.getElement().getGestorTiquetes().getListaTiquete().) {
-//                
-//            }
-//        }
-//    }
+ 
 }

@@ -18,21 +18,14 @@ public class Sorteo {
     private String fecha;
     
 
-    public Sorteo(String nombreSorteo, int codigo, TipoSorteo tipo, int emisiones, String fecha) {
-        this.nombreSorteo = nombreSorteo;
-        this.codigo = codigo;
-        this.tipo = tipo;
-        this.emisiones = emisiones;
-        this.fecha = fecha;
-    }
 
-    public Sorteo(String nombreSorteo, int codigo, TipoSorteo tipo, int emisiones,String fecha, GestionTiquete gestorTiquetes) {
+    public Sorteo(String nombreSorteo, int codigo, TipoSorteo tipo, int emisiones,String fecha) {
         this.nombreSorteo = nombreSorteo;
         this.codigo = codigo;
         this.tipo = tipo;
         this.emisiones = emisiones;
         this.fecha = fecha;
-        this.gestorTiquetes = gestorTiquetes;
+        this.gestorTiquetes = new GestionTiquete();
         
     }
 

@@ -13,9 +13,10 @@ import lotoTEC.estructuras.DoubleLinkedNode;
  * @author Mata
  */
 public class GestionTiquete {
-    private DoubleLinkedList<Tiquete> listaTiquete = new DoubleLinkedList<Tiquete>();
+    private DoubleLinkedList<Tiquete> listaTiquete;
 
     public GestionTiquete() {
+        this.listaTiquete = new DoubleLinkedList<>();
     }
 
     public DoubleLinkedList<Tiquete> getListaTiquete() {
@@ -71,4 +72,22 @@ public class GestionTiquete {
         }
         return temp.getElement();
     }
+   //DEVUELVE UNA LISTA PARA MODULAR EN LA TABLA DE LOS TIQUETES EN EL RANGO DE PRECIO     
+   public DoubleLinkedList<Tiquete> consultarRangoPrecio(int precioInicial, int precioFinal){
+        DoubleLinkedNode<Tiquete> temp = this.listaTiquete.getHead().getNext();
+        DoubleLinkedList<Tiquete> listaPrecios = new DoubleLinkedList<>();
+        while (temp!=null) {           
+            if (temp.getElement().getPrecio()< precioFinal && temp.getElement().getPrecio()> precioInicial) {
+                listaPrecios.insert(temp.getElement());
+            }
+            temp = temp.getNext();
+       }
+        return listaPrecios;
+    }
+   
+  public void consultarPrecioDolares(Tiquete tiquete){
+      int dolares = 0;
+      dolares = tiquete.getPrecio()/610;
+      System.out.println("Precio en dolares de tiquete es: "+dolares);//CAMBIAR POR ALERT
+  }
 }
