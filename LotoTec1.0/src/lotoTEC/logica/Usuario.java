@@ -15,8 +15,8 @@ public class Usuario {
   private String nombre, fechaNac, direccion, correo;
   private int cedula, telefono;
   private GestionSorteo gestionSorteo;
-  private DoubleLinkedList<Tiquete> tiquetesComprados = new DoubleLinkedList<Tiquete>();
-
+  private DoubleLinkedList<Tiquete> tiquetesComprados ;
+   
     public Usuario(String nombre, String fechaNac, String direccion, String correo, int cedula, int telefono) {
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -24,17 +24,8 @@ public class Usuario {
         this.correo = correo;
         this.cedula = cedula;
         this.telefono = telefono;
-    }
-
-   
-    public Usuario(String nombre, String fechaNac, String direccion, String correo, int cedula, int telefono, GestionSorteo gestionSorteo) {
-        this.nombre = nombre;
-        this.fechaNac = fechaNac;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.cedula = cedula;
-        this.telefono = telefono;
-        this.gestionSorteo = gestionSorteo;
+        this.gestionSorteo = new GestionSorteo();
+        this.tiquetesComprados = new DoubleLinkedList();
     }
 
     public String getNombre() {

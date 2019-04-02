@@ -13,9 +13,10 @@ import lotoTEC.estructuras.DoubleLinkedNode;
  * @author Mata
  */
 public class GestionUsuarios {
-    private DoubleLinkedList<Usuario> tiquetesComprados = new DoubleLinkedList<Usuario>();
+    private DoubleLinkedList<Usuario> tiquetesComprados;
 
     public GestionUsuarios() {
+        this.tiquetesComprados = new DoubleLinkedList();
     }
 
     public DoubleLinkedList<Usuario> getTiquetesComprados() {

@@ -16,7 +16,7 @@ public class GestionTiquete {
     private DoubleLinkedList<Tiquete> listaTiquete;
 
     public GestionTiquete() {
-        this.listaTiquete = new DoubleLinkedList<>();
+        this.listaTiquete = new DoubleLinkedList();
     }
 
     public DoubleLinkedList<Tiquete> getListaTiquete() {

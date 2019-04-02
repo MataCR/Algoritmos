@@ -5,11 +5,13 @@
  */
 package lotoTEC.ui;
 
+import lotoTEC.logica.GestionPedido;
 import lotoTEC.logica.GestionSorteo;
 import lotoTEC.logica.GestionTiquete;
 import lotoTEC.logica.Sorteo;
 import lotoTEC.logica.TipoSorteo;
 import lotoTEC.logica.Tiquete;
+import lotoTEC.logica.Usuario;
 
 /**
  *
@@ -48,5 +50,13 @@ public class NewClass {
          System.out.println(sorteo1.getGestorTiquetes().consultarTiquetePorNumero(2).getEmisor());
 //         sorteo1.getGestorTiquetes().eliminarTiquete(tiquete2);
 //         System.out.println(sorteo1.getGestorTiquetes().consultarTiquetePorNumero(2).getEmisor());
+        System.out.println("---------------------------------*");
+
+        Usuario usuario1 = new Usuario("nombre", "fechanac", "direccion", "correo", 305, 0);
+        GestionPedido pedido = new GestionPedido(gestorSorteo);
+        pedido.realizarPedido(usuario1, tiquete3);
+        System.out.println(pedido.consultarPedidos(305).toString());
+        pedido.eliminarPedido(usuario1, tiquete3);
+        System.out.println(pedido.consultarPedidos(305).toString());
     }
 }
