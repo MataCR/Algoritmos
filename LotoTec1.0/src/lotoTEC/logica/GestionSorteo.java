@@ -48,24 +48,34 @@ public class GestionSorteo {
         return sorteos;
     }
     public Sorteo consultarPorCodigo(int codigo){
-        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
-        if (this.listaSorteo.getSize() == 0) {
-            System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
-        }
+        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead();
+        
         while (temp != null) {            
             if (temp.getElement().getCodigo() == codigo) {
                 break;
             }
             temp = temp.getNext();
-        }if (temp == null) {
-            System.out.println("No se encuentra");//CAMBIAR POR ALERT
         }
         
         return temp.getElement();
     }
+    
+    public void añadirTiquete(Tiquete tiquete,int codigo){
+        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead();
+        
+        while (temp != null) {            
+            if (temp.getElement().getCodigo() == codigo) {
+                temp.getElement().getGestorTiquetes().crearTiquete(tiquete);
+            }
+            temp = temp.getNext();
+        }
+        
+     
+    }
+    
     public DoubleLinkedList<Sorteo> consultarTipo(TipoSorteo tipo){
         DoubleLinkedList<Sorteo> sorteos = new DoubleLinkedList<>();
-        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
+        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead();
         if (this.listaSorteo.getSize() == 0) {
             System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
         }
@@ -80,10 +90,7 @@ public class GestionSorteo {
     
     public DoubleLinkedList<Sorteo> consultarFecha(String fecha){
         DoubleLinkedList<Sorteo> sorteos = new DoubleLinkedList<>();
-        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead().getNext();
-        if (this.listaSorteo.getSize() == 0) {
-            System.out.println("Lista esta vacia"); //CAMBIAR POR ALERT
-        }
+        DoubleLinkedNode<Sorteo> temp = this.listaSorteo.getHead();
         while (temp != null) {            
             if (temp.getElement().getFecha().equals(fecha)) {
                 sorteos.insert(temp.getElement());

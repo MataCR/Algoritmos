@@ -14,20 +14,31 @@ public class Tiquete {
     private String emisor, tipoSorteo;
     private int precio, numero;
    private Usuario usuario;
+   private Sorteo sorteo;
 
-    public Tiquete(String emisor, String tipoSorteo, int precio, int numero, Usuario usuario) {
+    public Tiquete(String emisor, String tipoSorteo, int precio, int numero, Usuario usuario, Sorteo sorteo) {
         this.emisor = emisor;
         this.tipoSorteo = tipoSorteo;
         this.precio = precio;
         this.numero = numero;
         this.usuario = usuario;
+        this.sorteo = sorteo;
     }
 
-    public Tiquete(String emisor, String tipoSorteo, int precio, int numero) {
+    public Tiquete(String emisor, String tipoSorteo, int precio, int numero, Sorteo sorteo) {
         this.emisor = emisor;
         this.tipoSorteo = tipoSorteo;
         this.precio = precio;
         this.numero = numero;
+        this.sorteo = sorteo;
+    }
+
+    public Sorteo getSorteo() {
+        return sorteo;
+    }
+
+    public void setSorteo(Sorteo sorteo) {
+        this.sorteo = sorteo;
     }
     
 

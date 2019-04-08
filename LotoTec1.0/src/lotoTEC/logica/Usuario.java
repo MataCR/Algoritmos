@@ -12,20 +12,24 @@ import lotoTEC.estructuras.DoubleLinkedList;
  * @author Mata
  */
 public class Usuario {
-  private String nombre, fechaNac, direccion, correo;
-  private int cedula, telefono;
+  private String nombre, direccion, correo;
+  private int cedula, telefono, edad;
   private GestionSorteo gestionSorteo;
   private DoubleLinkedList<Tiquete> tiquetesComprados ;
    
-    public Usuario(String nombre, String fechaNac, String direccion, String correo, int cedula, int telefono) {
+    public Usuario(String nombre, int edad, String direccion, String correo, int cedula, int telefono) {
         this.nombre = nombre;
-        this.fechaNac = fechaNac;
+        this.edad = edad;
         this.direccion = direccion;
         this.correo = correo;
         this.cedula = cedula;
         this.telefono = telefono;
         this.gestionSorteo = new GestionSorteo();
         this.tiquetesComprados = new DoubleLinkedList();
+    }
+
+    public Usuario() {
+        
     }
 
     public String getNombre() {
@@ -36,12 +40,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getFechaNac() {
-        return fechaNac;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setFechaNac(String fechaNac) {
-        this.fechaNac = fechaNac;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public String getDireccion() {

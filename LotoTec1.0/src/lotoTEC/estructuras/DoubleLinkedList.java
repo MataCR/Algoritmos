@@ -71,6 +71,16 @@ public class DoubleLinkedList<X> implements LinkedListBehavior<X> {
             size++;
         }
     }
+    
+//    public void insertFront(X element){
+//        if (isEmpty()) {
+//            head = new DoubleLinkedNode(element);
+//            tail = head;
+//            size++;            
+//        }else{
+//            head.setPrev(new DoubleLinkedNode(element));
+//        }
+//    }
 
     /**
      * Permite consultar cualquier nodo de la lista según el elemento que
