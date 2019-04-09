@@ -7,12 +7,6 @@ package lotoTEC.estructuras;
 
 import lotoTEC.interfaces.LinkedListBehavior;
 
-/**
- *
- * @author jearo Esta clase permite generar una lista doblemente enlazada
- * totalmente funcional
- * @param <X>
- */
 public class DoubleLinkedList<X> implements LinkedListBehavior<X> {
 
     /*

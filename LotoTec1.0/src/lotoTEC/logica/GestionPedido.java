@@ -15,7 +15,7 @@ import lotoTEC.estructuras.DoubleLinkedNode;
 public class GestionPedido {
     GestionSorteo sorteos;
     DoubleLinkedList<Usuario> colaUsuario;
-
+    
     public GestionPedido(GestionSorteo sorteos) {
         this.sorteos = sorteos;
         this.colaUsuario= new DoubleLinkedList<>();
@@ -35,14 +35,15 @@ public class GestionPedido {
     public void setColaUsuario(DoubleLinkedList<Usuario> colaUsuario) {
         this.colaUsuario = colaUsuario;
     }
-    
+//    Este metodo guarda los tiquetes a pedir en la lista de tiquetes del usuario
     public void cargarPedido(Usuario usuario, Tiquete tiquete){
         usuario.getTiquetesComprados().insert(tiquete);
     }
-    
+//    Este metodo ingresa en la cola de usuarios a atender el usuario que dio en realizar pedido
     public void realizarPedido(Usuario usuario){ 
         this.colaUsuario.insert(usuario);
     }
+//    imprime la lista de pedido para efectos de pruebas en el main
     public void imprimir(){
         DoubleLinkedNode<Usuario> temp = this.colaUsuario.getHead();
         while (temp != null) {            
@@ -50,6 +51,7 @@ public class GestionPedido {
             temp = temp.getNext();
         }
     }
+//    este metodo crea una lista y guarda los pedidos del usuario con su cedula
     public DoubleLinkedList<Tiquete> consultarPedidos(int cedula){
         DoubleLinkedNode<Usuario> temp = this.colaUsuario.getHead();
          
@@ -64,7 +66,7 @@ public class GestionPedido {
         
         return temp.getElement().getTiquetesComprados();
     }
-    
+//    elimina el pedido del usuario
     public void eliminarPedido(Usuario usuario,Tiquete tiquete){
         DoubleLinkedNode<Usuario> temp = this.colaUsuario.getHead().getNext();
         while (temp.getNext() != null) {  
@@ -75,20 +77,18 @@ public class GestionPedido {
             temp = temp.getNext();
         }
     }
-    
+//    este metodo recorre la lista del usuario y cada tiquete lo actualiza en la lista de sorteos asi como elimina el usuario de la cola
     public void atenderPedido(){
         Usuario usuarioAtendido = this.colaUsuario.getHead().getElement();
         this.colaUsuario.delete(usuarioAtendido);
         DoubleLinkedNode<Tiquete> temp = usuarioAtendido.getTiquetesComprados().getHead();
-        
+        System.out.println("Atendiendo pedido");
         while (temp != null) {      
-            
-            buscarPorNumero(temp.getElement().getNumero(), temp.getElement().getSorteo()).setUsuario(temp.getElement().getUsuario());
+            this.sorteos.actualizarCompra(temp.getElement());
             temp = temp.getNext();
-            
         }
     }
-    
+//    este metodo busca un tiquete dentro del sorteo por su numero
     public Tiquete buscarPorNumero(int numero, Sorteo sorteo){
         DoubleLinkedNode<Tiquete> temp = sorteo.getGestorTiquetes().getListaTiquete().getHead();
         Tiquete remplazar = null;

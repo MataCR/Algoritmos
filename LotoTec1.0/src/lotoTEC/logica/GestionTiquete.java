@@ -39,8 +39,19 @@ public class GestionTiquete {
         this.listaTiquete.update(tiqueteEditar, tiqueteFinal);
     }
     
+    public void atenderTiquete(Tiquete tiqueteUsuario){
+        DoubleLinkedNode<Tiquete> temp = this.listaTiquete.getHead();
+        while (temp!= null) {            
+            if (temp.getElement().getEmisor().equals(tiqueteUsuario.getEmisor())&&temp.getElement().getNumero()==tiqueteUsuario.getNumero() ) {
+                temp.getElement().setUsuario(tiqueteUsuario.getUsuario());
+            }
+            temp = temp.getNext();
+        }
+        System.out.println("Asigno tiquete");
+    }
+    
     public Tiquete consultarTiquetePorNumero(int numero){
-        DoubleLinkedNode<Tiquete> temp = this.listaTiquete.getHead().getNext();
+        DoubleLinkedNode<Tiquete> temp = this.listaTiquete.getHead();
         if (this.listaTiquete.getSize() == 0) {
             System.out.println("Lista vacia"); //cambiar por alert 
         }

@@ -5,9 +5,13 @@
  */
 package lotoTEC.vista;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
+import lotoTEC.estructuras.DoubleLinkedNode;
 import lotoTEC.logica.GestionPedido;
+import lotoTEC.logica.GestionSorteo;
+import lotoTEC.logica.ModeladorTablas;
 import lotoTEC.logica.Sorteo;
 import lotoTEC.logica.Tiquete;
 import lotoTEC.logica.Usuario;
@@ -22,10 +26,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
      * Creates new form VistaPrincipal
      */
     Usuario usuario;
-    Sorteos pantallaSorteos;
     GestionPedido gestionPedido;
-    public VistaPrincipal(TableModel tablaTiquetes) {
-        this.gestionPedido = new GestionPedido(pantallaSorteos.getGestionSorteo());
+    GestionSorteo gestorSorteos;
+    public VistaPrincipal(TableModel tablaTiquetes, GestionSorteo gestorSorteo) {
+        this.gestorSorteos = gestorSorteo;
+        this.gestionPedido = new GestionPedido(gestorSorteo);
         initComponents();
         this.tablaTiquetesPedidos.setModel(tablaTiquetes);
     }
@@ -41,13 +46,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.usuario = usuario;
     }
 
-    public Sorteos getPantallaSorteos() {
-        return pantallaSorteos;
-    }
 
-    public void setPantallaSorteos(Sorteos pantallaSorteos) {
-        this.pantallaSorteos = pantallaSorteos;
-    }
     
 
     /**
@@ -72,8 +71,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         etiquetaCorreo = new javax.swing.JLabel();
         campoCorreo = new javax.swing.JTextField();
         botonIngresar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -81,37 +78,42 @@ public class VistaPrincipal extends javax.swing.JFrame {
         botonCargarPedido = new javax.swing.JButton();
         botonRealizarPedido = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
+        tablaTiquetesAPedir = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
         tablaTiquetesPedidos = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaTiquetesPedidos2 = new javax.swing.JTable();
+        botonPedidos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         campoNombre.setToolTipText("");
-        getContentPane().add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 120, 20));
+        getContentPane().add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 120, 30));
 
         nombreEtiqueta.setText("Ingrese su nombre:");
-        getContentPane().add(nombreEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 20));
+        getContentPane().add(nombreEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 20));
 
         cedulaEtiqueta.setText("Cedula: ");
-        getContentPane().add(cedulaEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
-        getContentPane().add(campoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, -1));
+        getContentPane().add(cedulaEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(campoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 120, 30));
 
         etiquetaTelefono.setText("Telefono: ");
-        getContentPane().add(etiquetaTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-        getContentPane().add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, -1));
+        getContentPane().add(etiquetaTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        getContentPane().add(campoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 120, 30));
 
         etiquetaEdad.setText("Edad: ");
-        getContentPane().add(etiquetaEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
-        getContentPane().add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 120, -1));
+        getContentPane().add(etiquetaEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        getContentPane().add(campoEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 120, 30));
 
         etiquetaDireccion.setText("Direccion: ");
-        getContentPane().add(etiquetaDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        getContentPane().add(campoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 120, 20));
+        getContentPane().add(etiquetaDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        getContentPane().add(campoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 120, 30));
 
         etiquetaCorreo.setText("Correo: ");
-        getContentPane().add(etiquetaCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
-        getContentPane().add(campoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 120, 20));
+        getContentPane().add(etiquetaCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        getContentPane().add(campoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 120, 30));
 
         botonIngresar.setText("Ingresar");
         botonIngresar.setActionCommand("ingresar");
@@ -120,27 +122,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 470, 170));
+        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 260, 0));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         botonEliminarPedido.setText("Eliminar");
+        botonEliminarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPedidoActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonEliminarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 110, -1));
 
         botonCargarPedido.setText("Cargar Pedido");
@@ -152,7 +144,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().add(botonCargarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 110, -1));
 
         botonRealizarPedido.setText("Realizar Pedido");
+        botonRealizarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRealizarPedidoActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonRealizarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 110, -1));
+
+        tablaTiquetesAPedir.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Emisor", "Tipo Sorteo", "Precio", "Numero", "Codigo Sorteo", "Usuario"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaTiquetesAPedir);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 460, 270));
 
         tablaTiquetesPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,9 +177,32 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 "Emisor", "Tipo Sorteo", "Precio", "Numero", "Codigo Sorteo", "Usuario"
             }
         ));
-        jScrollPane3.setViewportView(tablaTiquetesPedidos);
+        jScrollPane4.setViewportView(tablaTiquetesPedidos);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 460, 270));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 460, 270));
+
+        tablaTiquetesPedidos2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Emisor", "Tipo Sorteo", "Precio", "Numero", "Codigo Sorteo", "Usuario"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaTiquetesPedidos2);
+
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 460, 270));
+
+        botonPedidos.setText("Pedidos");
+        botonPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPedidosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,6 +216,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         int edad = Integer.parseInt(this.campoEdad.getText());
         Usuario usuario = new Usuario(nombre, edad, direccion, correo, cedula, telefono);
         setUsuario(usuario);
+        JOptionPane.showMessageDialog(null, "Ingreso Usuario");
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void botonCargarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarPedidoActionPerformed
@@ -190,14 +226,50 @@ public class VistaPrincipal extends javax.swing.JFrame {
        int precio = Integer.parseInt(tablaTiquetesPedidos.getModel().getValueAt(row, 2).toString());
        int numero = Integer.parseInt(tablaTiquetesPedidos.getModel().getValueAt(row, 3).toString());
        int codigoSorteo = Integer.parseInt(tablaTiquetesPedidos.getModel().getValueAt(row, 4).toString());
-       Sorteo sorteo = this.pantallaSorteos.getGestionSorteo().consultarPorCodigo(codigoSorteo);
+       Sorteo sorteo = this.gestorSorteos.consultarPorCodigo(codigoSorteo);
        Tiquete tiquete = new Tiquete(emisor, tipoSorteo, precio, numero, sorteo);
        this.gestionPedido.cargarPedido(this.usuario, tiquete);
+       
        actualizarTablaPedidoUsuario();
     }//GEN-LAST:event_botonCargarPedidoActionPerformed
+
+    private void botonRealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRealizarPedidoActionPerformed
+        this.gestionPedido.realizarPedido(this.usuario);
+        JOptionPane.showMessageDialog(null, "Se ha realizado el pedido");
+    }//GEN-LAST:event_botonRealizarPedidoActionPerformed
+
+    private void botonEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPedidoActionPerformed
+       int row = tablaTiquetesAPedir.getSelectedRow();
+       String emisor = tablaTiquetesAPedir.getModel().getValueAt(row, 0).toString();
+       String tipoSorteo = tablaTiquetesAPedir.getModel().getValueAt(row, 1).toString();
+       int precio = Integer.parseInt(tablaTiquetesAPedir.getModel().getValueAt(row, 2).toString());
+       int numero = Integer.parseInt(tablaTiquetesAPedir.getModel().getValueAt(row, 3).toString());
+       int codigoSorteo = Integer.parseInt(tablaTiquetesAPedir.getModel().getValueAt(row, 4).toString());
+       Sorteo sorteo = this.gestorSorteos.consultarPorCodigo(codigoSorteo);
+       Tiquete tiquete = new Tiquete(emisor, tipoSorteo, precio, numero, sorteo);
+       this.usuario.getTiquetesComprados().delete(tiquete);
+       actualizarTablaPedidoUsuario();
+    }//GEN-LAST:event_botonEliminarPedidoActionPerformed
+
+    private void botonPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPedidosActionPerformed
+       Pedidos vista = new Pedidos(this.gestionPedido);
+        vista.setVisible(true);
+    }//GEN-LAST:event_botonPedidosActionPerformed
     
     public void actualizarTablaPedidoUsuario(){
-        
+        ModeladorTablas.vaciarTabla(tablaTiquetesAPedir);
+        Object[] filaNueva;
+        DoubleLinkedNode<Tiquete> temp = this.usuario.getTiquetesComprados().getHead();
+        for (int i = 0; i < this.usuario.getTiquetesComprados().getSize(); i++) {
+            filaNueva = new Object[]{temp.getElement().getEmisor(),
+                temp.getElement().getTipoSorteo(),
+                temp.getElement().getPrecio(),
+                temp.getElement().getNumero(),
+                temp.getElement().getSorteo().getCodigo(),
+            temp.getElement().getUsuario()};
+            ModeladorTablas.nuevaFila(tablaTiquetesAPedir, filaNueva);
+            temp = temp.getNext();
+        } 
     }
     /**
      * @param args the command line arguments
@@ -238,6 +310,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonCargarPedido;
     private javax.swing.JButton botonEliminarPedido;
     private javax.swing.JButton botonIngresar;
+    private javax.swing.JButton botonPedidos;
     private javax.swing.JButton botonRealizarPedido;
     private javax.swing.JTextField campoCedula;
     private javax.swing.JTextField campoCorreo;
@@ -250,13 +323,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel etiquetaDireccion;
     private javax.swing.JLabel etiquetaEdad;
     private javax.swing.JLabel etiquetaTelefono;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nombreEtiqueta;
+    private javax.swing.JTable tablaTiquetesAPedir;
     private javax.swing.JTable tablaTiquetesPedidos;
+    private javax.swing.JTable tablaTiquetesPedidos2;
     // End of variables declaration//GEN-END:variables
 }
